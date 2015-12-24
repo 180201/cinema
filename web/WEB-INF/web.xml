@@ -13,4 +13,35 @@
         <servlet-name>Home</servlet-name>
         <url-pattern>/Home</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>Login</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>Register</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Reservations</servlet-name>
+        <servlet-class>Reservations</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Reservations</servlet-name>
+        <url-pattern>/Reservations</url-pattern>
+    </servlet-mapping>
+
 </web-app>
