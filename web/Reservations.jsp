@@ -11,6 +11,11 @@
     <title>Cinema</title>
 </head>
 <body>
+<ul>
+    <li><a href="Home.jsp">Home</a></li>
+    <li><a href="Register.jsp">Register</a> </li>
+    <li><a href="Login.jsp">Login</a></li>
+</ul>
     Reservations
 </body>
 </html>

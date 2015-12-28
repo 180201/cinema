@@ -4,9 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <welcome-file-list>
+        <welcome-file>/Home.jsp</welcome-file>
+        <!--<welcome-file>default.html</welcome-file>-->
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>Home</servlet-class>
+        <!--<jsp-file></jsp-file>-->
     </servlet>
 
     <servlet-mapping>
@@ -17,31 +23,34 @@
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>Login</servlet-class>
+        <jsp-file>/Login.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>Register</servlet-class>
+        <jsp-file>/Register.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
-        <url-pattern>/Register</url-pattern>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>Reservations</servlet-name>
         <servlet-class>Reservations</servlet-class>
+        <jsp-file>/Reservations.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Reservations</servlet-name>
-        <url-pattern>/Reservations</url-pattern>
+        <url-pattern>/reservations</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -9,7 +9,9 @@ import java.io.IOException;
  */
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.printf("do post");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.printf("do get");
     }
 }
