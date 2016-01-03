@@ -20,6 +20,13 @@
     <li role="presentation" class="active"><a href="Login.jsp">Login</a></li>
     <li role="presentation"><a href="Reservations.jsp">Reservations</a></li>
 </ul>
-    Login xaxaxa
+    Login
+    <form method="post" action="Login">
+        <div style="width: 40%;">
+            <input type="text" class="form-control" id="name" name="name"/>
+            <input type="text" class="form-control" id="sureName" name="sureName"/>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </form>
 </body>
 </html>

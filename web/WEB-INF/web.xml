@@ -9,48 +9,48 @@
         <!--<welcome-file>default.html</welcome-file>-->
     </welcome-file-list>
 
-    <servlet>
-        <servlet-name>Home</servlet-name>
-        <servlet-class>Home</servlet-class>
-        <!--<jsp-file></jsp-file>-->
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>Home</servlet-name>-->
+        <!--<servlet-class>Home</servlet-class>-->
+        <!--&lt;!&ndash;<jsp-file></jsp-file>&ndash;&gt;-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Home</servlet-name>
-        <url-pattern>/Home</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Home</servlet-name>-->
+        <!--<url-pattern>/Home.jsp</url-pattern>-->
+    <!--</servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>Login</servlet-class>
-        <jsp-file>/Login.jsp</jsp-file>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>Login</servlet-name>-->
+        <!--<servlet-class>Login</servlet-class>-->
+        <!--<jsp-file>/Login.jsp</jsp-file>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Login</servlet-name>-->
+        <!--<url-pattern>/Login</url-pattern>-->
+    <!--</servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>Register</servlet-class>
-        <jsp-file>/Register.jsp</jsp-file>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>Register</servlet-name>-->
+        <!--<servlet-class>Register</servlet-class>-->
+        <!--<jsp-file>/Register.jsp</jsp-file>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Register</servlet-name>-->
+        <!--<url-pattern>/Register.jsp</url-pattern>-->
+    <!--</servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>Reservations</servlet-name>
-        <servlet-class>Reservations</servlet-class>
-        <jsp-file>/Reservations.jsp</jsp-file>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>Reservations</servlet-name>-->
+        <!--<servlet-class>Reservations</servlet-class>-->
+        <!--<jsp-file>/Reservations.jsp</jsp-file>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Reservations</servlet-name>
-        <url-pattern>/reservations</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Reservations</servlet-name>-->
+        <!--<url-pattern>/Reservations.jsp</url-pattern>-->
+    <!--</servlet-mapping>-->
 
 </web-app>
