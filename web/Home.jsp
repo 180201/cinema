@@ -9,16 +9,20 @@
 <html>
 <head>
     <title>Cinema</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 HOME sweet home
 <br>
-URLS:
-<ul>
-    <li><a href="Register.jsp">Register</a> </li>
-    <li><a href="Login.jsp">Login</a></li>
-    <li><a href="Reservations.jsp">Reservation</a></li>
+<ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="Home.jsp">Home</a></li>
+    <li role="presentation" ><a href="Register.jsp">Register</a></li>
+    <li role="presentation"><a href="Login.jsp">Login</a></li>
+    <li role="presentation"><a href="Reservations.jsp">Reservations</a></li>
 </ul>
+
 
 
 </body>
