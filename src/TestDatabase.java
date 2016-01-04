@@ -36,7 +36,6 @@ public class TestDatabase {
         }catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.err.println("Dupa nie dziala klasa database");
-            e.printStackTrace();
 
         }finally {
             if(resultSet!=null)
