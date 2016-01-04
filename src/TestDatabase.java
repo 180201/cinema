@@ -14,10 +14,10 @@ public class TestDatabase {
 
         String DRIVER ="com.mysql.jdbc.Driver";
         String URL="jdbc:mysql://localhost:3306/base_cinema";
-        String QUERY = "SELECT FirstName FROM PERSONS WHERE Id =? ";
+        String QUERY = "SELECT Name FROM users WHERE Id =? ";
 
-        String user="user_cinema";
-        String password  = "12345";
+        String user="root";
+        String password  = "";
 
         try {
             System.out.println("1111");
@@ -30,10 +30,11 @@ public class TestDatabase {
             resultSet= statement.executeQuery();
 
             if(resultSet.next())
-                firstName= resultSet.getString("FirstName").trim();
+                firstName= resultSet.getString("Name").trim();
 
 
         }catch (ClassNotFoundException e) {
+            e.printStackTrace();
             System.err.println("Dupa nie dziala klasa database");
 
         }finally {

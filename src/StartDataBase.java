@@ -13,7 +13,8 @@ public class StartDataBase {
 
         System.out.println("sadasdsad");
         try {
-            lastName = new TestDatabase().lookUpFullname(myID);
+            //lastName = new TestDatabase().lookUpFullname(myID);
+            lastName = Database.login("aa", "aa");
         }catch (SQLException e){
             System.err.println("dupa nie dziala");
             e.printStackTrace();

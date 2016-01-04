@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Michał
+  singleton.User: Michał
   Date: 2015-12-24
   Time: 15:33
   To change this template use File | Settings | File Templates.
@@ -21,5 +21,12 @@
     <li role="presentation" ><a href="Reservations.jsp">Reservations</a></li>
 </ul>
     Register
+    <form method="post" action="Register">
+    <div style="width: 40%;">
+        <input type="text" class="form-control" id="name" name="user"/>
+        <input type="password" class="form-control" id="pass" name="pass"/>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+</form>
 </body>
 </html>

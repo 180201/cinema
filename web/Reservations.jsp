@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Michał
+  singleton.User: Michał
   Date: 2015-12-24
   Time: 15:33
   To change this template use File | Settings | File Templates.

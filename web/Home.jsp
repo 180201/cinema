@@ -1,6 +1,6 @@
-<%--
+<%@ page import="singleton.User" %><%--
   Created by IntelliJ IDEA.
-  User: Michał
+  singleton.User: Michał
   Date: 2015-12-28
   Time: 15:08
   To change this template use File | Settings | File Templates.
@@ -17,6 +17,18 @@
 HOME sweet home
 <br>
 <ul class="nav nav-pills">
+    <%
+        String userName = "";
+//        Object user = request.getAttribute("user");
+        try{
+            userName = User.getInstance().getName();
+        }
+        catch (Exception e){
+            userName = "";
+
+        }
+    %>
+    <h2><%=userName %></h2>
     <li role="presentation" class="active"><a href="Home.jsp">Home</a></li>
     <li role="presentation" ><a href="Register.jsp">Register</a></li>
     <li role="presentation"><a href="Login.jsp">Login</a></li>
