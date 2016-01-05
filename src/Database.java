@@ -1,6 +1,9 @@
+import singleton.Move;
 import singleton.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Michał on 2016-01-04.
@@ -53,6 +56,32 @@ public class Database {
                 User.createInstance(Integer.parseInt(resultSet.getString("Id").trim()), resultSet.getString("Name").trim());
 
             return resultSet.getString("Name").trim();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+        return null;
+    }
+    public static List<Move> getMoves() throws SQLException {
+        String QUERY = "SELECT Id, Name, Date, Time FROM Moves";
+        try {
+            List<Move> moves = new ArrayList<>();
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,user,password);
+            statement= connection.prepareStatement(QUERY);
+
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                moves.add(new Move(Integer.parseInt(resultSet.getString("Id")), resultSet.getString("Name"), resultSet.getString("Date"),resultSet.getString("Time")));
+            }
+            return moves;
         }catch (ClassNotFoundException e) {
             e.printStackTrace();
 
