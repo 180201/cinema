@@ -1,5 +1,3 @@
-import com.sun.net.httpserver.HttpServer;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,29 +8,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Michał on 2015-12-24.
+ * Created by Michał on 2016-01-12.
  */
-@WebServlet("/Register")
-public class Register extends HttpServlet {
+@WebServlet("/Book")
+public class Book  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "Home.jsp";
-
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        if ( user == null || user.length() == 0 || pass == null || pass.length() == 0 ){
-            url = "Register.jsp";
-//            request.setAttribute("error", "Podane dane nie mog¹ byæ puste.");
-        }
-        else
-        {
-            try {
-                Database.create(user, pass);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-
+        String url = "Booking.jsp";
         RequestDispatcher rd=request.getRequestDispatcher(url);
         rd.forward(request, response);
     }

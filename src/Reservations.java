@@ -15,6 +15,9 @@ import java.util.List;
  */
 @WebServlet("/Reservations")
 public class Reservations extends HttpServlet {
+    public Reservations(){
+        super();
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }

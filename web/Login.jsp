@@ -15,10 +15,10 @@
 </head>
 <body>
 <ul class="nav nav-pills">
-    <li role="presentation" ><a href="Home.jsp">Home</a></li>
-    <li role="presentation" ><a href="Register.jsp">Register</a></li>
-    <li role="presentation" class="active"><a href="Login.jsp">Login</a></li>
-    <li role="presentation"><a href="Reservations.jsp">Reservations</a></li>
+    <li role="presentation" ><a href="Home">Home</a></li>
+    <li role="presentation" ><a href="Register">Register</a></li>
+    <li role="presentation" class="active"><a href="Login">Login</a></li>
+    <li role="presentation"><a href="Reservations">Reservations</a></li>
 </ul>
     Login
     <form method="post" action="Login">
