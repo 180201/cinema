@@ -27,14 +27,21 @@
 </ul> <%
     // retrieve your list from the request, with casting
     ArrayList<Move> list = (ArrayList<Move>) request.getAttribute("moves");
-
 // print the information about every category of the list
 //        for(Move category : list) {
     out.println(list);
 //        }
 %>
-    Reservations
+<%= request.getAttribute("moves") %>
+${moves}
+Reservations
 
+
+
+<c:forEach items="${moves}" var="element" varStatus="info">
+
+   <p>${info.count}</p> <p>${element.Name}</p>
+</c:forEach>
 <table border="1" cellpadding="2">
     <thead>
     <tr>
@@ -44,10 +51,10 @@
         <%--<td>USUŃ</td>--%>
     </tr>
     </thead>
-    <tbody>
-    <c:forEach items="${moves}" var="element">
-        <tr>
-            <td>${element.Name}</td>
+
+    <c:forEach items="${moves}" var="element" varStatus="info">
+
+            ${element.Name}
                 <%--<td>${element.fullname}</td>--%>
                 <%--<td>--%>
                 <%--<form method="get" action="UpdateServlet">--%>
@@ -61,9 +68,8 @@
                 <%--<input type="submit" value="usuń" />--%>
                 <%--</form>--%>
                 <%--</td>--%>
-        </tr>
     </c:forEach>
-    </tbody>
+
 
 </table>
 </body>
