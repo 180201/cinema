@@ -1,4 +1,4 @@
-package singleton;
+package DAO;
 
 /**
  * Created by Michał on 2016-01-05.

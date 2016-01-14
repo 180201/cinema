@@ -21,7 +21,6 @@ public class Register extends HttpServlet {
         String pass = request.getParameter("pass");
         if ( user == null || user.length() == 0 || pass == null || pass.length() == 0 ){
             url = "Register.jsp";
-//            request.setAttribute("error", "Podane dane nie mog¹ byæ puste.");
         }
         else
         {

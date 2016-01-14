@@ -1,5 +1,6 @@
-import singleton.Move;
-import singleton.User;
+import DAO.Move;
+import DAO.Reservation;
+import DAO.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -82,6 +83,96 @@ public class Database {
                 moves.add(new Move(Integer.parseInt(resultSet.getString("Id")), resultSet.getString("Name"), resultSet.getString("Date"),resultSet.getString("Time")));
             }
             return moves;
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+        return null;
+    }
+
+    public static List<Move> getMove(Integer id) throws SQLException {
+        String QUERY = "SELECT Id, Name, Date, Time FROM Moves WHERE Id = (?)";
+        try {
+            List<Move> moves = new ArrayList<>();
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,user,password);
+            statement= connection.prepareStatement(QUERY);
+            Integer param = 1;
+            statement.setInt(param, id);
+
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                moves.add(new Move(Integer.parseInt(resultSet.getString("Id")), resultSet.getString("Name"), resultSet.getString("Date"),resultSet.getString("Time")));
+            }
+            return moves;
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+        return null;
+    }
+
+    public static void createReservation(String user, String move, String row, String place) throws SQLException {
+        String QUERY = "INSERT INTO reservations (User, Move, Row, Place) VALUES(?, ?, ?, ?)";
+        try {
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,"root",password);
+            statement= connection.prepareStatement(QUERY);
+
+            statement.setString(1,user);
+            statement.setString(2,move);
+            statement.setString(3,row);
+            statement.setString(4,place);
+
+            id = statement.executeUpdate();// executeQuery();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+
+    }
+
+    public static List<Reservation> getMyReservations(String userId) throws SQLException {
+        String QUERY = "SELECT * FROM reservations JOIN moves on reservations.Move = moves.Id WHERE User = (?) && reservations.Move = moves.Id";
+//        SELECT * FROM reservations, moves WHERE reservations.User = 6 && reservations.Move = moves.Id
+        try {
+            List<Reservation> reservations = new ArrayList<>();
+            List<Move> moves = new ArrayList<>();
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,user,password);
+            statement= connection.prepareStatement(QUERY);
+            statement.setString(1,userId);
+
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+//                Integer id, Integer user, Integer move, Integer row, Integer place
+                Move move = new Move(Integer.parseInt(resultSet.getString("moves.Id")), resultSet.getString("moves.Name"), resultSet.getString("moves.Date"),resultSet.getString("Time"));
+                reservations.add(new Reservation(Integer.parseInt(resultSet.getString("reservations.Id")), Integer.parseInt(resultSet.getString("reservations.user")),
+                                                 Integer.parseInt(resultSet.getString("reservations.move")),Integer.parseInt(resultSet.getString("reservations.row")),
+                                                 Integer.parseInt(resultSet.getString("reservations.place")),move));
+            }
+            return reservations;
         }catch (ClassNotFoundException e) {
             e.printStackTrace();
 

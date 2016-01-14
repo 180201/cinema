@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="singleton.Move" %><%--
+<%@ page import="DAO.Move" %><%--
   Created by IntelliJ IDEA.
-  singleton.User: Michał
+  DAO.User: Michał
   Date: 2015-12-24
   Time: 15:33
   To change this template use File | Settings | File Templates.
@@ -26,9 +26,37 @@
 
 
 </ul>
-    Reservations
-<form method="get" action="/Book">
 
+<form method="get" action="/Book">
+    Reservation
+    <table border="1" cellpadding="2">
+        <thead>
+        <tr>
+            <td>Move</td>
+            <td>Day</td>
+            <td>Hour</td>
+            <td>Row</td>
+            <td>Place</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${reservations}" var="element">
+            <tr>
+                <td>${element.getMoveTitle()}</td>
+                <td>${element.getMoveDate()}</td>
+                <td>${element.getMoveTime()}</td>
+                <td>${element.getRow()}</td>
+                <td>${element.getPlace()}</td>
+
+
+            </tr>
+        </c:forEach>
+
+        </tbody>
+
+    </table>
+    Repertoire
     <table border="1" cellpadding="2">
         <thead>
         <tr>

@@ -1,6 +1,6 @@
-<%@ page import="singleton.User" %><%--
+<%@ page import="DAO.User" %><%--
   Created by IntelliJ IDEA.
-  singleton.User: Michał
+  DAO.User: Michał
   Date: 2015-12-28
   Time: 15:08
   To change this template use File | Settings | File Templates.

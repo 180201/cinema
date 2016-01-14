@@ -1,4 +1,6 @@
-import singleton.Move;
+import DAO.Move;
+import DAO.Reservation;
+import DAO.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +29,12 @@ public class Reservations extends HttpServlet {
         try{
             List<Move> moves = Database.getMoves();
             request.setAttribute("moves", moves);
+
+            User user = User.getInstance();
+            if(user != null){
+                List<Reservation> reservations = Database.getMyReservations(String.valueOf(user.getId()));
+                request.setAttribute("reservations", reservations);
+            }
 
             RequestDispatcher rd=request.getRequestDispatcher(url);
             rd.forward(request, response);

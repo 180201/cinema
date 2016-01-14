@@ -1,4 +1,5 @@
-import singleton.Move;
+import DAO.Move;
+import DAO.Reservation;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,11 +13,10 @@ public class StartDataBase {
 
         String myID ="1";
         String lastName = null;
-        List<Move> moves = new ArrayList<>();
+        List<Reservation> moves = new ArrayList<>();
         System.out.println("sadasdsad");
         try {
-            //lastName = new TestDatabase().lookUpFullname(myID);
-            moves = Database.getMoves();
+            moves = Database.getMyReservations("6");
         }catch (SQLException e){
             System.err.println("dupa nie dziala");
             e.printStackTrace();

@@ -32,25 +32,49 @@
 
         var asyncRequest;
         function pushRequest(){
-//            try
-//            {
-//                var moveId = $.url.attr('ID');
+            try
+            {
+                var moveId = getParameterByName('ID');
                 var places = new Array();
                 $(".btn-group > button.btn").each(function(i, obj) {
                     if($('#'+i).hasClass('btn-success')) {
                         places.push(i);
                     }
                 });
-                console.log(places);
-//                asyncRequest = new XMLHttpRequest();
-//                asyncRequest.addEventListener("readystatechange", stateChange, false);
-//                asyncRequest.open('GET', '/Test', true);    //   /Test is url to Servlet!
-//                asyncRequest.send(null);
-//            }
-//            catch(exception)
-//            {
-//                alert("Request failed");
-//            }
+
+                var parameters = "?move=" + moveId + "&res=" + places;
+                var xmlHttpReq = new XMLHttpRequest();
+
+                xmlHttpReq.open("get", "/FinishReservataion" + parameters, true); //this is synchronous to avoid having too many connections open
+
+                xmlHttpReq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+                xmlHttpReq.onreadystatechange = function(){
+
+                    if(xmlHttpReq.readyState == 4){
+                        success = "yes";
+//                        alert(xmlHttpReq.responseText);
+
+                    }
+                }
+
+                xmlHttpReq.send();
+                window.location.href = "/Reservations";
+
+                success = "no";
+
+            }
+            catch(exception)
+            {
+                alert("Request failed");
+            }
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
         $( document ).ready(function() {
