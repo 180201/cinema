@@ -27,6 +27,7 @@
 
 </ul>
 
+<h2>${sessionScope.UserSession.name}</h2>
 <form method="get" action="/Book">
     Reservation
     <table border="1" cellpadding="2">

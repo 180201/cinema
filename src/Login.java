@@ -1,3 +1,5 @@
+import DAO.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -5,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -22,6 +25,9 @@ public class Login extends HttpServlet {
 
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
+        HttpSession session = request.getSession(true);
+        User UserObject = (User)request.getAttribute("UserSession");
+
         if ( user == null || user.length() == 0 || pass == null || pass.length() == 0 )
         {
             url = "Login.jsp";
@@ -32,6 +38,11 @@ public class Login extends HttpServlet {
                 String ret = Database.login(user, pass);
                 if(ret != null){
                     url = "Home.jsp";
+                    if(UserObject== null)
+                    {
+                        UserObject=UserObject.getInstance();
+                        session.setAttribute("UserSession",UserObject);
+                    }
 //                    request.setAttribute("user", ret);
                 }
             } catch (SQLException e) {

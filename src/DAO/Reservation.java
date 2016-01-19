@@ -27,6 +27,7 @@ public class Reservation {
         this.moveObj = moveObj;
     }
 
+    public Reservation(){}
     private Integer place;
 
     public Integer getId() {

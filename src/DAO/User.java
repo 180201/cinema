@@ -18,7 +18,7 @@ public class User {
         user.id = id;
         user.name = name;
     }
-
+    public User (){}
     public Integer getId() {
         return id;
     }

@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 /**
@@ -22,7 +24,12 @@ public class FinishReservataion extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "Home.jsp";
-        User user = User.getInstance();
+        HttpSession httpSession = request.getSession();
+        User user = (User) httpSession.getAttribute("UserSession");
+        PrintWriter out = response.getWriter();
+
+        out.println(user.getId());
+        out.close();
         String userId = String.valueOf(user.getId());
         String move = request.getParameter("move");
         String placeParam = request.getParameter("res");

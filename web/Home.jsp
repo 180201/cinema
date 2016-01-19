@@ -28,11 +28,13 @@ HOME sweet home
 
         }
     %>
+    <h2>${sessionScope.UserSession.name}</h2>
     <h2><%=userName %></h2>
     <li role="presentation" class="active"><a href="Home">Home</a></li>
     <li role="presentation" ><a href="Register">Register</a></li>
     <li role="presentation"><a href="Login">Login</a></li>
     <li role="presentation"><a href="Reservations">Reservations</a></li>
+    <li role="presentation"><a href="Logout">Logout</a></li>
 </ul>
 
 

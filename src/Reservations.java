@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -30,7 +31,9 @@ public class Reservations extends HttpServlet {
             List<Move> moves = Database.getMoves();
             request.setAttribute("moves", moves);
 
-            User user = User.getInstance();
+            HttpSession httpSession = request.getSession();
+            User user = (User) httpSession.getAttribute("UserSession");
+//            User user = User.getInstance();
             if(user != null){
                 List<Reservation> reservations = Database.getMyReservations(String.valueOf(user.getId()));
                 request.setAttribute("reservations", reservations);
