@@ -245,4 +245,39 @@ public class Database {
         }
         return null;
     }
+
+
+    public static List<Reservation> getPlace(String moveId) throws SQLException {
+        String QUERY = "SELECT * FROM reservations JOIN moves on reservations.Move = moves.Id WHERE  reservations.Move= (?) && reservations.Move = moves.Id";
+//        SELECT * FROM reservations, moves WHERE reservations.User = 6 && reservations.Move = moves.Id
+        try {
+            List<Reservation> reservations = new ArrayList<>();
+            List<Move> moves = new ArrayList<>();
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,user,password);
+            statement= connection.prepareStatement(QUERY);
+            statement.setString(1,moveId);
+
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+//                Integer id, Integer user, Integer move, Integer row, Integer place
+                Move move = new Move(Integer.parseInt(resultSet.getString("moves.Id")), resultSet.getString("moves.Name"), resultSet.getString("moves.Date"),resultSet.getString("Time"));
+                reservations.add(new Reservation(Integer.parseInt(resultSet.getString("reservations.Id")), Integer.parseInt(resultSet.getString("reservations.user")),
+                        Integer.parseInt(resultSet.getString("reservations.move")),Integer.parseInt(resultSet.getString("reservations.row")),
+                        Integer.parseInt(resultSet.getString("reservations.place")),move));
+            }
+            return reservations;
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+        return null;
+    }
 }

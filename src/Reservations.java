@@ -36,6 +36,7 @@ public class Reservations extends HttpServlet {
 //            User user = User.getInstance();
             if(user != null){
                 List<Reservation> reservations = Database.getMyReservations(String.valueOf(user.getId()));
+
                 request.setAttribute("reservations", reservations);
             }
 

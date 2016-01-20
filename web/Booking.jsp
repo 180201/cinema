@@ -30,6 +30,27 @@
             });
         }
 
+        function busyPlace(){
+            var placesArray=[];
+            var rawListPlaces =$('#ListPlace').val();
+            placesArray=rawListPlaces.split(',');
+            placesArray=placesArray.sort();
+            var i = 0;
+
+
+            var num = null;
+            $(".btn-group > button.btn").each( function(){
+                num = +this.id;
+                if($('#'+num).hasClass('btn-default')&& num==placesArray[i]){
+                    $('#'+num).addClass('disabled');
+                    $('#'+num).addClass('btn-warning');
+                    $('#'+num).removeClass('btn-default');
+                    i++;
+                }
+            });
+
+
+        }
         var asyncRequest;
         function pushRequest(){
             try
@@ -79,10 +100,15 @@
 
         $( document ).ready(function() {
             finish();
+            busyPlace();
+            document.getElementById('idListPlace').style.display = "none";
+
         });
     </script>
 </head>
     <body>
+        <div id="idListPlace"><input type="text" value="${requestScope.placesReq}" name="ListPlace" Id="ListPlace" ></div>
+
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="Home">Home</a></li>
             <li role="presentation" ><a href="Register">Register</a></li>

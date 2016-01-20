@@ -11,21 +11,21 @@ import java.util.List;
 public class StartDataBase {
     public static void main(String[] args) {
 
-        String myID ="6";
+        String myID ="9";
         int id=30;
         String lastName = null;
         Reservation reservation = null;
-     //   List<Reservation> moves = new ArrayList<>();
+        List<Reservation> moves = new ArrayList<>();
    //     System.out.println("sadasdsad");
         try {
-     //       moves = Database.getMyReservations("6");
+            moves = Database.getPlace(myID);
       //      Database.deleteReservation(id);
             reservation= Database.getOneReservation(id);
         }catch (SQLException e){
             System.err.println("dupa nie dziala");
             e.printStackTrace();
         }
-        System.out.println(reservation.getUser());
+        System.out.println(moves);
 
     }
 }
