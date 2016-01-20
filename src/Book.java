@@ -38,6 +38,10 @@ public class Book  extends HttpServlet {
                 }
 
             }
+            if(finallyPlaces==null)
+            {
+                finallyPlaces=new String("00");
+            }
             int lengthString = finallyPlaces.length();
             finallyPlaces=finallyPlaces.substring(0,lengthString-1);
             request.setAttribute("placesReq", finallyPlaces);

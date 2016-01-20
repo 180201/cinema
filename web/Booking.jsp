@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Michał
@@ -22,6 +23,7 @@
                 if($('#'+num).hasClass('btn-success')){
                     $('#'+num).addClass('btn-default');
                     $('#'+num).removeClass('btn-success');
+
                 }
                 else{
                     $('#'+num).addClass('btn-success');
@@ -110,17 +112,42 @@
         <div id="idListPlace"><input type="text" value="${requestScope.placesReq}" name="ListPlace" Id="ListPlace" ></div>
 
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="Home">Home</a></li>
-            <li role="presentation" ><a href="Register">Register</a></li>
-            <li role="presentation" ><a href="Login">Login</a></li>
-            <li role="presentation" ><a href="Reservations">Reservations</a></li>
+            <c:set var="sessionRank" value="${sessionScope.UserSession.rank }"/>
+            <c:set var="rankSessionUser" value="${sessionScope.RankSession.userRank }"/>
+            <c:set var="rankSessionAdmin" value="${sessionScope.RankSession.adminRank }"/>
+            <c:set var="rankSessionCashier" value="${sessionScope.RankSession.cashierRank }"/>
+
+
+            <c:choose>
+                <c:when test="${sessionScope.UserSession ==null}">
+                    <li role="presentation" ><a href="Home">Home</a></li>
+                    <li role="presentation" ><a href="Register">Register</a></li>
+                    <li role="presentation"><a href="Login">Login</a></li>
+                    <li role="presentation"><a href="Reservations">Reservations</a></li>
+                </c:when>
+                <c:when test="${sessionRank==rankSessionUser }">
+                    <li role="presentation"><a href="Home">Home</a></li>
+                    <li role="presentation"><a href="Reservations">Reservations</a></li>
+                    <li role="presentation"><a href="Logout">Logout</a></li>
+                </c:when>
+                <c:when test="${sessionRank==rankSessionAdmin }">
+                    <li role="presentation"><a href="Home">Home</a></li>
+                    <li role="presentation"><a href="Reservations">Reservations</a></li>
+                    <li role="presentation"><a href="Logout">Logout</a></li>
+                </c:when>
+                <c:when test="${sessionRank==rankSessionCashier }">
+                    <li role="presentation"><a href="Home">Home</a></li>
+                    <li role="presentation"><a href="Reservations">Reservations</a></li>
+                    <li role="presentation"><a href="Logout">Logout</a></li>
+                </c:when>
+            </c:choose>
 
         </ul>
         <h1>Select place</h1>
         <%--<form:form modelAttribute="myform" action="result" method="get" >--%>
         <%--<form>--%>
             <div class="btn-group" role="group" aria-label="">
-                <button id="11" type="button" class="btn btn-default ">1</button>
+                <button id="11" type="button" class="btn btn-default" value="">1</button>
                 <button id="12" type="button" class="btn btn-default">2</button>
                 <button id="13" type="button" class="btn btn-default">3</button>
                 <button id="14" type="button" class="btn btn-default">4</button>

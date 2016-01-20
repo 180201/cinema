@@ -9,16 +9,25 @@ public class User {
     private String name;
 
     private String password;
+    private String rank;
+
+
+
 
      public static User getInstance(){
         return user;
     }
-    public static void createInstance(Integer id, String name){
+
+
+
+    public static void createInstance(Integer id, String name, String rank){
         user = new User();
         user.id = id;
         user.name = name;
+        user.rank = rank;
     }
     public User (){}
+
     public Integer getId() {
         return id;
     }
@@ -26,6 +35,10 @@ public class User {
     public void setId(Integer Id) {
         this.id = id;
     }
+
+    public void setRank(String rank) { this.rank = rank;}
+
+    public String getRank() {return rank;}
 
     public String getName() {return name;}
 

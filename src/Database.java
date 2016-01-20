@@ -44,7 +44,7 @@ public class Database {
     }
 
     public static String login(String name, String pass) throws SQLException {
-        String QUERY = "SELECT Id, Name, Pass FROM users WHERE Name =? AND Pass =?";
+        String QUERY = "SELECT Id, Name, Pass, Rank FROM users WHERE Name =? AND Pass =?";
         try {
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL,user,password);
@@ -54,7 +54,7 @@ public class Database {
             statement.setString(2,pass);
             resultSet = statement.executeQuery();
             if(resultSet.next())
-                User.createInstance(Integer.parseInt(resultSet.getString("Id").trim()), resultSet.getString("Name").trim());
+                User.createInstance(Integer.parseInt(resultSet.getString("Id").trim()), resultSet.getString("Name").trim(), resultSet.getString("Rank").trim());
 
             return resultSet.getString("Name").trim();
         }catch (ClassNotFoundException e) {

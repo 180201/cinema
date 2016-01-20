@@ -1,3 +1,4 @@
+import DAO.Rank;
 import DAO.User;
 
 import javax.servlet.RequestDispatcher;
@@ -27,6 +28,7 @@ public class Login extends HttpServlet {
         String pass = request.getParameter("pass");
         HttpSession session = request.getSession(true);
         User UserObject = (User)request.getAttribute("UserSession");
+        Rank rankSession = new Rank("admin","user","cashier");
 
         if ( user == null || user.length() == 0 || pass == null || pass.length() == 0 )
         {
@@ -37,11 +39,12 @@ public class Login extends HttpServlet {
             try {
                 String ret = Database.login(user, pass);
                 if(ret != null){
-                    url = "Home.jsp";
+                    url = "Home";
                     if(UserObject== null)
                     {
                         UserObject=UserObject.getInstance();
                         session.setAttribute("UserSession",UserObject);
+                        session.setAttribute("RankSession",rankSession);
                     }
 //                    request.setAttribute("user", ret);
                 }

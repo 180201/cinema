@@ -5,6 +5,7 @@
   Time: 15:33
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,10 +16,35 @@
 </head>
 <body>
 <ul class="nav nav-pills">
-    <li role="presentation" ><a href="Home">Home</a></li>
-    <li role="presentation" class="active"><a href="Register">Register</a></li>
-    <li role="presentation" ><a href="Login">Login</a></li>
-    <li role="presentation" ><a href="Reservations">Reservations</a></li>
+    <c:set var="sessionRank" value="${sessionScope.UserSession.rank }"/>
+    <c:set var="rankSessionUser" value="${sessionScope.RankSession.userRank }"/>
+    <c:set var="rankSessionAdmin" value="${sessionScope.RankSession.adminRank }"/>
+    <c:set var="rankSessionCashier" value="${sessionScope.RankSession.cashierRank }"/>
+
+
+    <c:choose>
+        <c:when test="${sessionScope.UserSession ==null}">
+            <li role="presentation"><a href="Home">Home</a></li>
+            <li role="presentation"  class="active"><a href="Register">Register</a></li>
+            <li role="presentation"><a href="Login">Login</a></li>
+            <li role="presentation"><a href="Reservations">Reservations</a></li>
+        </c:when>
+        <c:when test="${sessionRank==rankSessionUser }">
+            <li role="presentation"><a href="Home">Home</a></li>
+            <li role="presentation"><a href="Reservations">Reservations</a></li>
+            <li role="presentation"><a href="Logout">Logout</a></li>
+        </c:when>
+        <c:when test="${sessionRank==rankSessionAdmin }">
+            <li role="presentation"><a href="Home">Home</a></li>
+            <li role="presentation"><a href="Reservations">Reservations</a></li>
+            <li role="presentation"><a href="Logout">Logout</a></li>
+        </c:when>
+        <c:when test="${sessionRank==rankSessionCashier }">
+            <li role="presentation"><a href="Home">Home</a></li>
+            <li role="presentation"><a href="Reservations">Reservations</a></li>
+            <li role="presentation"><a href="Logout">Logout</a></li>
+        </c:when>
+    </c:choose>
 </ul>
     Register
     <form method="post" action="Register">
