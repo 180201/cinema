@@ -153,6 +153,31 @@ public class Database {
 
     }
 
+
+    public static void deleteReservation(Integer idReservation) throws SQLException {
+        String QUERY = "DELETE FROM reservations WHERE reservations.Id = ?";
+        try {
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,"root",password);
+            statement= connection.prepareStatement(QUERY);
+
+            statement.setInt(1,idReservation);
+
+            id = statement.executeUpdate();// executeQuery();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+
+    }
+
     public static List<Reservation> getMyReservations(String userId) throws SQLException {
         String QUERY = "SELECT * FROM reservations JOIN moves on reservations.Move = moves.Id WHERE User = (?) && reservations.Move = moves.Id";
 //        SELECT * FROM reservations, moves WHERE reservations.User = 6 && reservations.Move = moves.Id
@@ -171,6 +196,40 @@ public class Database {
                 reservations.add(new Reservation(Integer.parseInt(resultSet.getString("reservations.Id")), Integer.parseInt(resultSet.getString("reservations.user")),
                                                  Integer.parseInt(resultSet.getString("reservations.move")),Integer.parseInt(resultSet.getString("reservations.row")),
                                                  Integer.parseInt(resultSet.getString("reservations.place")),move));
+            }
+            return reservations;
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+        return null;
+    }
+
+
+    public static Reservation getOneReservation(Integer reservationId) throws SQLException {
+        String QUERY = "SELECT * FROM reservations JOIN moves on reservations.Move = moves.Id WHERE reservations.Id = (?) && reservations.Move = moves.Id";
+//        SELECT * FROM reservations, moves WHERE reservations.User = 6 && reservations.Move = moves.Id
+        try {
+            Reservation reservations = null;
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,user,password);
+            statement= connection.prepareStatement(QUERY);
+            statement.setInt(1,reservationId);
+
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+//                Integer id, Integer user, Integer move, Integer row, Integer place
+                Move move = new Move(Integer.parseInt(resultSet.getString("moves.Id")), resultSet.getString("moves.Name"), resultSet.getString("moves.Date"),resultSet.getString("Time"));
+                reservations=new Reservation(Integer.parseInt(resultSet.getString("reservations.Id")), Integer.parseInt(resultSet.getString("reservations.user")),
+                        Integer.parseInt(resultSet.getString("reservations.move")),Integer.parseInt(resultSet.getString("reservations.row")),
+                        Integer.parseInt(resultSet.getString("reservations.place")),move);
             }
             return reservations;
         }catch (ClassNotFoundException e) {

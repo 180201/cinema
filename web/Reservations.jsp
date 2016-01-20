@@ -38,6 +38,7 @@
             <td>Hour</td>
             <td>Row</td>
             <td>Place</td>
+            <td>Action</td>
 
         </tr>
         </thead>
@@ -49,11 +50,12 @@
                 <td>${element.getMoveTime()}</td>
                 <td>${element.getRow()}</td>
                 <td>${element.getPlace()}</td>
-
+                <td>
+                    <a href=DeleteReservation?ID=<c:out value="${element.getId()}"/>>Delete</a>
+                </td>
 
             </tr>
         </c:forEach>
-
         </tbody>
 
     </table>
