@@ -15,6 +15,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <ul class="nav nav-pills">
     <c:set var="sessionRank" value="${sessionScope.UserSession.rank }"/>
     <c:set var="rankSessionUser" value="${sessionScope.RankSession.userRank }"/>
@@ -46,11 +47,12 @@
         </c:when>
     </c:choose>
 </ul>
-    Register
+    <h4>Create account</h4>
+    <br />
     <form method="post" action="Register">
     <div style="width: 40%;">
-        <input type="text" class="form-control" id="name" name="user"/>
-        <input type="password" class="form-control" id="pass" name="pass"/>
+        Login: <input type="text" class="form-control" id="name" name="user"/>
+        Password: <input type="password" class="form-control" id="pass" name="pass"/>
         <button type="submit" class="btn btn-default">Submit</button>
     </div>
 </form>

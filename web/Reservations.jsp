@@ -40,6 +40,7 @@
         <c:when test="${sessionRank==rankSessionAdmin }">
             <li role="presentation"><a href="Home">Home</a></li>
             <li role="presentation"  class="active"><a href="Reservations">Reservations</a></li>
+            <li role="presentation"><a href="Managemove">Managemove</a></li>
             <li role="presentation"><a href="Logout">Logout</a></li>
         </c:when>
         <c:when test="${sessionRank==rankSessionCashier }">
@@ -51,11 +52,12 @@
 
 
 </ul>
-
-<h2>${sessionScope.UserSession.name}</h2>
-
+<c:if test="${sessionScope.UserSession !=null}">
+<h5>You are logged in as: ${sessionScope.UserSession.name}</h5>
+</c:if>
 <form method="get" action="/Book">
-    Reservation
+    <c:if test="${sessionScope.UserSession !=null}">
+    My reservation
     <table border="1" cellpadding="2">
         <thead>
         <tr>
@@ -85,6 +87,8 @@
         </tbody>
 
     </table>
+        </c:if>
+        <br/>
     Repertoire
     <table border="1" cellpadding="2">
         <thead>
@@ -102,7 +106,15 @@
                 <td>${element.getDate()}</td>
                 <td>${element.getTime()}</td>
                 <td>
-                    <a href=Book?ID=<c:out value="${element.getId()}"/>>Book</a>
+                    <c:choose>
+                        <c:when test="${sessionScope.UserSession ==null}">
+                            <a href="Login"/>Fist log</a>
+                        </c:when>
+                        <c:when test="${sessionScope.UserSession !=null}">
+                            <a href=Book?ID=<c:out value="${element.getId()}"/>>Book</a>
+                        </c:when>
+                    </c:choose>
+
                 </td>
 
             </tr>

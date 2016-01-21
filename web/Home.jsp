@@ -14,7 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
-HOME sweet home
+
 <body>
 <br>
 <ul class="nav nav-pills">
@@ -40,7 +40,9 @@ HOME sweet home
             <c:when test="${sessionRank==rankSessionAdmin }">
                 <li role="presentation" class="active"><a href="Home">Home</a></li>
                 <li role="presentation"><a href="Reservations">Reservations</a></li>
+                <li role="presentation"><a href="Managemove">Managemove</a></li>
                 <li role="presentation"><a href="Logout">Logout</a></li>
+
             </c:when>
             <c:when test="${sessionRank==rankSessionCashier }">
                 <li role="presentation" class="active"><a href="Home">Home</a></li>
@@ -51,15 +53,17 @@ HOME sweet home
 
 
 </ul>
-<h2>Witaj ${sessionScope.UserSession.name}!</h2>
-<h2>${sessionScope.UserSession.id}</h2>
-<h2>Rank z sesji:  ${sessionScope.UserSession.rank}</h2>
+<c:if test="${sessionScope.UserSession !=null}">
+<h2>Hello ${sessionScope.UserSession.name}!</h2>
+</c:if>
+<%--<h2>${sessionScope.UserSession.id}</h2>--%>
+<%--<h2>Rank z sesji:  ${sessionScope.UserSession.rank}</h2>--%>
 
-<h2>${sessionRank == rankSessionUser }</h2>
-<h2>-----</h2>
-<h2>${rankSessionUser }</h2>
-<h2>-----</h2>
-<h2>${sessionRank}</h2>
+<%--<h2>${sessionRank == rankSessionUser }</h2>--%>
+<%--<h2>-----</h2>--%>
+<%--<h2>${rankSessionUser }</h2>--%>
+<%--<h2>-----</h2>--%>
+<%--<h2>${sessionRank}</h2>--%>
 
 </body>
 </html>

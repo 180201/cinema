@@ -97,10 +97,10 @@ public class Database {
         return null;
     }
 
-    public static List<Move> getMove(Integer id) throws SQLException {
+    public static Move getMove(Integer id) throws SQLException {
         String QUERY = "SELECT Id, Name, Date, Time FROM Moves WHERE Id = (?)";
         try {
-            List<Move> moves = new ArrayList<>();
+            Move move=null;
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL,user,password);
             statement= connection.prepareStatement(QUERY);
@@ -109,9 +109,9 @@ public class Database {
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                moves.add(new Move(Integer.parseInt(resultSet.getString("Id")), resultSet.getString("Name"), resultSet.getString("Date"),resultSet.getString("Time")));
+                move =new Move(Integer.parseInt(resultSet.getString("Id")), resultSet.getString("Name"), resultSet.getString("Date"),resultSet.getString("Time"));
             }
-            return moves;
+            return move;
         }catch (ClassNotFoundException e) {
             e.printStackTrace();
 
@@ -279,5 +279,80 @@ public class Database {
                 connection.close();
         }
         return null;
+    }
+
+    public static void createMove(String name, String date, String time) throws SQLException {
+        String QUERY = "INSERT INTO moves (Name, Date,Time) VALUES(?, ?, ?)";
+        try {
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,user,password);
+            statement= connection.prepareStatement(QUERY);
+
+            statement.setString(1,name);
+            statement.setString(2,date);
+            statement.setString(3,time);
+            id = statement.executeUpdate();// executeQuery();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+
+    }
+
+    public static void deleteMove(Integer idMove) throws SQLException {
+        String QUERY = "DELETE FROM moves WHERE moves.Id = ?";
+        try {
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,"root",password);
+            statement= connection.prepareStatement(QUERY);
+
+            statement.setInt(1,idMove);
+
+            id = statement.executeUpdate();// executeQuery();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+
+    }
+
+    public static void updateMove(String name, String date, String time, Integer id) throws SQLException {
+        String QUERY = "UPDATE moves Set moves.Name=?,moves.Date=?,moves.Time=? where moves.Id=?";
+        try {
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL,user,password);
+            statement= connection.prepareStatement(QUERY);
+
+            statement.setString(1,name);
+            statement.setString(2,date);
+            statement.setString(3,time);
+            statement.setInt(4,id);
+            id = statement.executeUpdate();// executeQuery();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }finally {
+            if(resultSet!=null)
+                resultSet.close();
+            if(statement !=null)
+                statement.close();
+            if(connection !=null)
+                connection.close();
+        }
+
     }
 }
