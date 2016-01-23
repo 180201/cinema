@@ -56,6 +56,8 @@
 <c:if test="${sessionScope.UserSession !=null}">
 <h2>Hello ${sessionScope.UserSession.name}!</h2>
 </c:if>
+
+<h3>Cinema App</h3>
 <%--<h2>${sessionScope.UserSession.id}</h2>--%>
 <%--<h2>Rank z sesji:  ${sessionScope.UserSession.rank}</h2>--%>
 

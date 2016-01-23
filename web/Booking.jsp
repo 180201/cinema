@@ -23,11 +23,13 @@
                 if($('#'+num).hasClass('btn-success')){
                     $('#'+num).addClass('btn-default');
                     $('#'+num).removeClass('btn-success');
+                    console.log(num);
 
                 }
                 else{
                     $('#'+num).addClass('btn-success');
                     $('#'+num).removeClass('btn-default');
+                    console.log(num);
                 }
             });
         }
@@ -59,11 +61,14 @@
             {
                 var moveId = getParameterByName('ID');
                 var places = new Array();
-                $(".btn-group > button.btn").each(function(i, obj) {
+                var i=null;
+                $(".btn-group > button.btn").each(function() {
+                    i = +this.id
                     if($('#'+i).hasClass('btn-success')) {
                         places.push(i);
                     }
                 });
+                console.log(places);
 
                 var parameters = "?move=" + moveId + "&res=" + places;
                 var xmlHttpReq = new XMLHttpRequest();
@@ -76,7 +81,7 @@
 
                     if(xmlHttpReq.readyState == 4){
                         success = "yes";
-//                        alert(xmlHttpReq.responseText);
+                        alert(xmlHttpReq.responseText);
 
                     }
                 }
